@@ -1,16 +1,14 @@
 #!/bin/sh
 
-
 #modify build.properties file
 f_build='./LearningTool/Scripts/build.properties'
 weblogic_host='infsgvm14.sg.oracle.com'
 lt_server='LTServer'
 lt_port='7001'
 
-sed -i -e "s/^lt.weblogic.host=/lt.weblogic.host=$weblogic_host/" \
- -e "s/^lt.weblogic.server=/lt.weblogic.server=$lt_server/" \
- -e "s/^lt.weblogic.admin.port=/lt.weblogic.admin.port=$lt_port/" $f_build > build.properties.new
-
+sed -i -e "s/^lt.weblogic.host=.*/lt.weblogic.host=$weblogic_host/" \
+ -e "s/^lt.weblogic.server=.*/lt.weblogic.server=$lt_server/" \
+ -e "s/^lt.weblogic.admin.port=.*/lt.weblogic.admin.port=$lt_port/" $f_build
 
 #modify web.xml
 f_admin_web='./LearningTool/Configuration/Admin/DeploymentDescriptors/web.xml'
@@ -37,13 +35,13 @@ obiee_port='7779'
 lt_logout_url='/LTWeb/faces/logout.jspx'
 admin_logout_url='/LTAdminWeb/faces/logout.jspx'
 
-sed -i -e  "s#^osl.lt.web.contentAccess.homeURL=#osl.lt.web.contentAccess.homeURL=$web_contentaccess_homeurl#"  \
- -e "s#^osl.lt.web.contentAccess.attachedContentAccessBaseURL=#osl.lt.web.contentAccess.attachedContentAccessBaseURL=$web_contentaccess_attached_content_access_baseurl#" \
-  -e "s#^osl.lt.content.ucmIntegration.ridcURI=#osl.lt.content.ucmIntegration.ridcURI=$content_ucm_ridcuri#" \
-  -e "s#^osl.lt.content.ucmIntegration.oslContentDoctype=#osl.lt.content.ucmIntegration.oslContentDoctype=$content_ucm_oslcontent_doctype#" \
-  -e "s#^osl.lt.content.ucmIntegration.update.URL=#osl.lt.content.ucmIntegration.update.URL=$content_ucm_update_url#" \
-  -e "s#^osl.lt.content.ucmIntegration.search.URL=#osl.lt.content.ucmIntegration.search.URL=$content_ucm_search_url#" \
-  -e "s#^osl.lt.obiee.integration.host=#osl.lt.obiee.integration.host=$obiee_host#" \
-  -e "s#^osl.lt.obiee.integration.port=#osl.lt.obiee.integration.port=$obiee_port#" \
-  -e "s#^osl.lt.logout.url=#osl.lt.logout.url=$lt_logout_url#" \
-  -e "s#^osl.admin.logout.url=#osl.admin.logout.url=$admin_logout_url#"  $f_osl_config > osl_configue.new
+sed -i -e  "s#^osl.lt.web.contentAccess.homeURL=.*#osl.lt.web.contentAccess.homeURL=$web_contentaccess_homeurl#"  \
+ -e "s#^osl.lt.web.contentAccess.attachedContentAccessBaseURL=.*#osl.lt.web.contentAccess.attachedContentAccessBaseURL=$web_contentaccess_attached_content_access_baseurl#" \
+  -e "s#^osl.lt.content.ucmIntegration.ridcURI=.*#osl.lt.content.ucmIntegration.ridcURI=$content_ucm_ridcuri#" \
+  -e "s#^osl.lt.content.ucmIntegration.oslContentDoctype=.*#osl.lt.content.ucmIntegration.oslContentDoctype=$content_ucm_oslcontent_doctype#" \
+  -e "s#^osl.lt.content.ucmIntegration.update.URL=.*#osl.lt.content.ucmIntegration.update.URL=$content_ucm_update_url#" \
+  -e "s#^osl.lt.content.ucmIntegration.search.URL=.*#osl.lt.content.ucmIntegration.search.URL=$content_ucm_search_url#" \
+  -e "s#^osl.lt.obiee.integration.host=.*#osl.lt.obiee.integration.host=$obiee_host#" \
+  -e "s#^osl.lt.obiee.integration.port=.*#osl.lt.obiee.integration.port=$obiee_port#" \
+  -e "s#^osl.lt.logout.url=.*#osl.lt.logout.url=$lt_logout_url#" \
+  -e "s#^osl.admin.logout.url=.*#osl.admin.logout.url=$admin_logout_url#"  $f_osl_config > osl_configue.new
